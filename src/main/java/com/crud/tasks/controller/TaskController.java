@@ -5,8 +5,6 @@ import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -28,8 +26,8 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
-    public Boolean deleteTask(@RequestParam Long taskId) throws TaskNotFoundException{
-        return service.deleteTaskById(taskId).orElseThrow(TaskNotFoundException::new);
+    public void deleteTask(@RequestParam Long taskId) throws TaskNotFoundException{
+        service.deleteTaskById(taskId).orElseThrow(TaskNotFoundException::new);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
