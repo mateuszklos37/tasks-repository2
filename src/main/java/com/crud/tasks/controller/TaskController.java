@@ -4,6 +4,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class TaskController {
         try {
             service.deleteTaskById(taskId);
         }
-        catch (NullPointerException e){
+        catch (EmptyResultDataAccessException e){
             throw new TaskNotFoundException();
         }
     }
