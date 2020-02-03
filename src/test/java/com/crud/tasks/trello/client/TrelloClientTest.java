@@ -51,5 +51,4 @@ public class TrelloClientTest {
         Assert.assertEquals("test_id", fetchedTrelloBoards.get(0).getId());
         Assert.assertEquals(new ArrayList<>(), fetchedTrelloBoards.get(0).getLists());
     }
-
 }
