@@ -21,12 +21,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('mysql:mysql-connector-java')
     //compile('org.postgresql:postgresql')
-    //testCompile ('org.springframework.boot:spring-boot-starter-test')
+    testCompile ('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	implementation 'junit:junit:4.12'
-	testCompile('org.mockito:mockito-all:1.10.19')
+	testCompile('org.mockito:mockito-core:2.10.0')
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 

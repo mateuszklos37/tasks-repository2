@@ -20,6 +20,6 @@ public class CreatedTrelloCard {
     @JsonProperty("shortUrl")
     private String shortUrl;
 
-    @JsonProperty("badges")
-    private CreatedBadge badge;
+//    @JsonProperty("badges")
+//    private CreatedBadge badge;
 }
