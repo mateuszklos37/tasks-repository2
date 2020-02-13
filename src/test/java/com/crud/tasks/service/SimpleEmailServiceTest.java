@@ -1,6 +1,7 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Mail;
+import com.crud.tasks.domain.TrelloCardDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,6 +21,9 @@ public class SimpleEmailServiceTest {
     @Mock
     JavaMailSender javaMailSender;
 
+    @Mock
+    TrelloService trelloService;
+
     @Test
     public void shouldSendEmail(){
         //Given
@@ -38,7 +42,7 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmailWithCc(){
         //Given
-        Mail mail = new Mail("mateuszklos37@gmail.com", "Test", "Test message", "test@test.com");
+        Mail mail = new Mail("mateusz_klos@vp.pl", "Test", "Test message", "test@test.com");
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(mail.getMailTo());

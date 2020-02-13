@@ -15,6 +15,7 @@ public class DbService {
     TaskRepository repository;
 
     public List<Task> getAllTasks(){
+        System.out.println("Get all tasks method called");
         return repository.findAll();
     }
 
