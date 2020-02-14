@@ -25,16 +25,19 @@ public class EmailScheduler {
 
     @Scheduled(cron = "0 0 10 * * *")
     public void sendInformationEmail(){
+        emailService.send(prepareMail());
+    }
+    public Mail prepareMail(){
         long size = taskRepository.count();
         if (size!=1) {
-            emailService.send(new Mail(adminConfig.getAdminMail(),
+            return new Mail(adminConfig.getAdminMail(),
                     SUBJECT,
-                    "Currently you have: " + size + " tasks"));
+                    "Currently you have: " + size + " tasks");
         }
         else{
-            emailService.send(new Mail(adminConfig.getAdminMail(),
+            return new Mail(adminConfig.getAdminMail(),
                     SUBJECT,
-                    ONETASKMESSAGE));
+                    ONETASKMESSAGE);
         }
     }
 }
