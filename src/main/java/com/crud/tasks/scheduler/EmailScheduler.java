@@ -24,25 +24,22 @@ public class EmailScheduler {
     @Autowired
     AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(fixedDelay = 10000)
+//    @Scheduled(cron = "0 0 10 * * *")
     public void sendInformationEmail(){
         emailService.send(prepareMail());
     }
     private Mail prepareMail(){
         long size = taskRepository.count();
-        if (size!=1) {
             return new Mail(adminConfig.getAdminMail(),
                     SUBJECT,
                     formatMessage(size));
-        }
-        else{
-            return new Mail(adminConfig.getAdminMail(),
-                    SUBJECT,
-                    ONETASKMESSAGE);
-        }
     }
 
     private String formatMessage(long size){
+        if(size==1){
+            return ONETASKMESSAGE;
+        }
             return TASKSMESSAGE + size;
         }
     }
