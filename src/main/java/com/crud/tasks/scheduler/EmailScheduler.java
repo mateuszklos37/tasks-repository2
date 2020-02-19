@@ -13,6 +13,7 @@ public class EmailScheduler {
 
     private static final String SUBJECT = "One info email per day";
     private static final String ONETASKMESSAGE = "Currently you have 1 task in your database";
+    private static final String TASKSMESSAGE = "Current number of tasks in your database: ";
 
     @Autowired
     SimpleEmailService emailService;
@@ -23,16 +24,17 @@ public class EmailScheduler {
     @Autowired
     AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 10 * * *")
+//    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(fixedDelay = 10000)
     public void sendInformationEmail(){
         emailService.send(prepareMail());
     }
-    public Mail prepareMail(){
+    private Mail prepareMail(){
         long size = taskRepository.count();
         if (size!=1) {
             return new Mail(adminConfig.getAdminMail(),
                     SUBJECT,
-                    "Currently you have: " + size + " tasks");
+                    formatMessage(size));
         }
         else{
             return new Mail(adminConfig.getAdminMail(),
@@ -40,4 +42,9 @@ public class EmailScheduler {
                     ONETASKMESSAGE);
         }
     }
-}
+
+    private String formatMessage(long size){
+            return TASKSMESSAGE + size;
+        }
+    }
+
