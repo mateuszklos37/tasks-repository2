@@ -25,7 +25,6 @@ public class EmailScheduler {
     AdminConfig adminConfig;
 
     @Scheduled(fixedDelay = 10000)
-//    @Scheduled(cron = "0 0 10 * * *")
     public void sendInformationEmail(){
         emailService.send(prepareMail());
     }
