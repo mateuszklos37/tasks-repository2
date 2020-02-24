@@ -70,8 +70,7 @@ public class TrelloControllerTest {
                 .andExpect(jsonPath("$[0].name", is("Test task")))
                 .andExpect(jsonPath("$[0].lists", hasSize(1)))
                 .andExpect(jsonPath("$[0].lists[0].id", is("1")))
-                .andExpect(jsonPath("$[0].lists[0].name", is("Test list")))
-                .andExpect(jsonPath("$[0].lists[0].isClosed", is(false)));
+                .andExpect(jsonPath("$[0].lists[0].name", is("Test list")));
     }
 
     @Test
