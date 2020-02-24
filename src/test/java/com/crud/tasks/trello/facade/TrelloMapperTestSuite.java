@@ -2,6 +2,7 @@ package com.crud.tasks.trello.facade;
 
 import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
+import com.crud.tasks.trello.validator.TrelloValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,12 +13,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TrelloMapperTestSuite {
 
     @Autowired
     TrelloMapper trelloMapper;
+
+    @Autowired
+    TrelloValidator trelloValidator;
 
     @Test
     public void testMappingCardToDto(){
@@ -107,5 +113,14 @@ public class TrelloMapperTestSuite {
         Assert.assertEquals("REST Learning", boardName);
         Assert.assertEquals(3, howManyLists);
         Assert.assertTrue(isFirstListClosed);
+    }
+    @Test
+    public void shouldReturnTesting(){
+        //Given
+        TrelloCard trelloCard = new TrelloCard("test", "test", "top", "1");
+        //When
+        String result = trelloValidator.validateCard(trelloCard);
+        //Then
+        Assert.assertEquals("Someone is testing application", result);
     }
 }

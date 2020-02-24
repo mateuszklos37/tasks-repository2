@@ -12,12 +12,16 @@ import java.util.stream.Collectors;
 @Component
 public class TrelloValidator {
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloValidator.class);
+    private static final String VALIDATE = "Someone is using application";
+    private static final String TESTING = "Someone is testing application";
 
-    public void validateCard(final TrelloCard trelloCard){
+    public String validateCard(final TrelloCard trelloCard){
         if(trelloCard.getName().contains("test")){
-            LOGGER.info("Someone is testing application");
+            LOGGER.info(TESTING);
+            return TESTING;
         } else{
-            LOGGER.info("Someone is using application");
+            LOGGER.info(VALIDATE);
+            return VALIDATE;
         }
     }
 

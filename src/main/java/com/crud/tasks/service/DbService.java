@@ -14,10 +14,7 @@ public class DbService {
     @Autowired
     TaskRepository repository;
 
-    public List<Task> getAllTasks(){
-        System.out.println("Get all tasks method called");
-        return repository.findAll();
-    }
+    public List<Task> getAllTasks(){return repository.findAll(); }
 
     public Optional<Task> getTaskById(long id){ return repository.findById(id);}
 
